@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top, green 40%, skyblue 60%);
+      overflow: hidden;
+    }
+
+    /* Mountains */
+    .mountain {
+      position: absolute;
+      bottom: 40%;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 200px solid #4d3319;
+    }
+    .mountain::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150px;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 200px solid #8B5E3C;
+      opacity: 0.6;
+    }
+
+    /* Trees */
+    .tree {
+      position: absolute;
+      bottom: 40%;
+      width: 20px;
+      height: 60px;
+      background: #5a3a1a;
+    }
+    .tree::before {
+      content: "";
+      position: absolute;
+      bottom: 60px;
+      left: -30px;
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 60px solid darkgreen;
+    }
+
+    /* Birds */
+    .bird {
+      position: absolute;
+      width: 40px;
+      height: 20px;
+    }
+    .bird::before,
+    .bird::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-top: 3px solid black;
+      border-radius: 50%;
+    }
+    .bird::before { left: 0; transform: rotate(-20deg); }
+    .bird::after  { right: 0; transform: rotate(20deg); }
+
+    @keyframes fly {
+      from { left: -50px; top: 100px; }
+      to { left: 100%; top: 60px; }
+    }
+    .bird { animation: fly 10s linear infinite; }
+
+    /* Road */
+    .road {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: gray;
+    }
+    .road::after {
+      content: "";
+      position: absolute;
+      top: 45px;
+      width: 100%;
+      height: 10px;
+      background: repeating-linear-gradient(
+        to right,
+        white 0 40px,
+        transparent 40px 80px
+      );
+    }
+
+    /* Car */
+    .car {
+      position: absolute;
+      bottom: 100px;
+      left: -250px; /* start outside screen */
+      width: 200px;
+      height: 80px;
+      background: red;
+      border-radius: 20px;
+      animation: drive 8s linear infinite; /* car moves */
+    }
+
+    @keyframes drive {
+      from { left: -250px; }
+      to   { left: 100%; }
+    }
+
+    /* Car Top */
+    .car::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 40px;
+      width: 120px;
+      height: 40px;
+      background: darkred;
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* Wheels */
+    .wheel {
+      position: absolute;
+      bottom: -30px;
+      width: 50px;
+      height: 50px;
+      background: black;
+      border-radius: 50%;
+    }
+    .wheel.left { left: 20px; }
+    .wheel.right { right: 20px; }
+
+    /* Driver (man) */
+    .driver {
+      position: absolute;
+      top: -30px;
+      left: 90px;
+      width: 30px;
+      height: 30px;
+      background: peachpuff;
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <!-- Mountains -->
+  <div class="mountain" style="left:100px;"></div>
+  <div class="mountain" style="left:350px;"></div>
+  <div class="mountain" style="left:600px;"></div>
+
+  <!-- Trees -->
+  <div class="tree" style="left:150px;"></div>
+  <div class="tree" style="left:450px;"></div>
+  <div class="tree" style="left:700px;"></div>
+
+  <!-- Birds -->
+  <div class="bird" style="top:120px;"></div>
+  <div class="bird" style="top:160px; animation-delay: 2s;"></div>
+  <div class="bird" style="top:200px; animation-delay: 4s;"></div>
+
+  <!-- Road -->
+  <div class="road"></div>
+
+  <!-- Car with driver -->
+  <div class="car">
+    <div class="wheel left"></div>
+    <div class="wheel right"></div>
+    <div class="driver"></div>
+  </div>
+</body>
+</html>
